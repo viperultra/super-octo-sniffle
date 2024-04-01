@@ -1,0 +1,30 @@
+name: CI/CD for Google Colab
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10' # Choose the Python version you need
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt # If you have any dependencies
+
+      - name: Run Python script in Google Colab
+        run: |
+          # Install Jupyter Lab
+          pip install jupyterlab
+          # Execute the notebook
+          jupyter nbconvert --to notebook --execute test.ipynb --output executed_test.ipynb

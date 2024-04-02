@@ -19,11 +19,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt # If you have any dependencies
+          pip install -r requirements.txt 
 
       - name: Run Python script in Google Colab
         run: |
-          # Install Jupyter Lab
           pip install jupyterlab
-          # Execute the notebook
           jupyter nbconvert --to notebook --execute test.ipynb --output executed_test.ipynb
